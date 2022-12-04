@@ -14,6 +14,9 @@ def telegram_bot(request):
         original_message = message.reply_to_message
         caption = ""
         if original_message.caption:
+            caption = original_message.caption
+        
+        if original_message.animation:
             bot.sendAnimation(chat_id=chat_id, animation=original_message.animation.file_id, caption=caption, reply_to_message_id=message_id, allow_sending_without_reply=True)
         elif original_message.audio:
             bot.sendAudio(chat_id=chat_id, audio=original_message.audio.file_id, caption=caption, reply_to_message_id=message_id, allow_sending_without_reply=True)
